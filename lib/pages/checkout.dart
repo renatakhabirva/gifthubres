@@ -84,7 +84,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   final product = item['Product'];
                   final imageUrl = product['ProductPhoto']?.isNotEmpty ?? false
                       ? product['ProductPhoto'][0]['Photo']
-                      : 'https://via.placeholder.com/150';
+                      : 'https://picsum.photos/200/300';
 
                   return Padding(
                     padding: const EdgeInsets.only(right: 12),
@@ -170,10 +170,22 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
             Spacer(),
 
-           
+
             ElevatedButton(
-              onPressed: (){}, child: null,
+              onPressed: () {
+                if (selectedRecipientId == null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Выберите получателя')),
+                  );
+                  return;
+                }
+              },
+              child: Text(
+                'Оплатить ${widget.totalCost.toStringAsFixed(2)} ₽',
+                style: TextStyle(fontSize: 16),
+              ),
             ),
+
           ],
         ),
       ),

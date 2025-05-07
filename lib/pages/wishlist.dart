@@ -171,7 +171,7 @@ class _WishlistGridState extends State<WishlistGrid> {
               final List<dynamic>? photos = product['ProductPhoto'];
               final imageUrl = product['ProductPhoto']?.isNotEmpty ?? false
                   ? product['ProductPhoto'][0]['Photo']
-                  : 'https://via.placeholder.com/150';
+                  : 'https://picsum.photos/200/300';
               final productId = product['ProductID'] as int;
               final isFavorite = isInWishlist(productId);
 

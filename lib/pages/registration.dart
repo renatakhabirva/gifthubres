@@ -106,15 +106,17 @@ class RegistrationFormState extends State<RegistrationForm> {
                 decoration: InputDecoration(labelText: "Номер телефона"),
                 keyboardType: TextInputType.phone,
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'^\+?[0-9]*$')), //  только цифры и +
+                  FilteringTextInputFormatter.allow(RegExp(r'[\+\d\s\-\(\)]')),
                 ],
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return MessagesRu.fieldRequired;
                   }
 
-                  if (!RegExp(r'^\+7\d{10}$').hasMatch(value)) {
-                    return 'Введите корректный номер телефона (например, +7 999 999 99 99)';
+                  if (!RegExp(
+                      r'^\+7\s$[0-9]{3}$\s[0-9]{3}\s[0-9]{2}\s[0-9]{2}$')
+                      .hasMatch(value)) {
+                    return 'Введите корректный номер телефона (например, +7 (999) 999 99 99)';
                   }
                   return null;
                 },
@@ -226,7 +228,7 @@ class RegistrationFormState extends State<RegistrationForm> {
   }
 
 
-  /// Регистрация пользователя
+  ///Регистрация пользователя
   Future<void> _signUp() async {
     if (!_formKey.currentState!.validate()) {
       return;

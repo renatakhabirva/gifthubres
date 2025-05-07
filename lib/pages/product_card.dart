@@ -151,7 +151,7 @@ class ProductDetailScreen extends StatelessWidget {
 
     final List<String> mediaUrls = product['ProductPhoto']?.isNotEmpty ?? false
         ? List<String>.from(product['ProductPhoto'].map((e) => e['Photo']))
-        : ['https://via.placeholder.com/150'];
+        : ['https://picsum.photos/200/300'];
 
 
     final isInWishlist = ValueNotifier<bool>(false);

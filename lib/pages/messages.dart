@@ -15,4 +15,6 @@ class MessagesRu {
   static const String emailExists = 'Этот email уже используется';
   static const String phoneExists = 'Этот номер телефона уже используется';
   static const String displayNameExists = 'Этот никнейм уже используется';
+  static const String quantityProduct = 'В наличии больше нет';
+  static const String error = 'Ошибка';
 }

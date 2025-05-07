@@ -7,6 +7,8 @@ import 'package:gifthub/pages/checkout.dart';
 import 'package:gifthub/pages/video_widget.dart';
 import 'package:gifthub/pages/quantity_product.dart';
 
+import 'messages.dart';
+
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
 
@@ -189,10 +191,16 @@ class _CartPageState extends State<CartPage> {
           .update({'Quantity': newQuantity})
           .eq('CartItemID', cartItemId);
     } catch (error) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Ошибка изменения количества: $error'),
-      ));
+      String errorMessage = MessagesRu.error;
+
+      if (error.toString().contains('количество')) {
+        errorMessage = MessagesRu.quantityProduct;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(errorMessage)),
+      );
     }
+
   }
 
   Future<void> removeCartItem(int cartItemId) async {
@@ -269,7 +277,7 @@ class _CartPageState extends State<CartPage> {
     final parametr = item['Parametr'];
     final imageUrl = product['ProductPhoto']?.isNotEmpty ?? false
         ? product['ProductPhoto'][0]['Photo']
-        : 'https://via.placeholder.com/150';
+        : 'https://picsum.photos/200/300';
 
     return InkWell(
       onTap: () {

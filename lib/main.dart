@@ -14,10 +14,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
 
-  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    
-    setWindowMinSize(const Size(500, 500));
-  }
   runApp(GiftHub());
 }
 

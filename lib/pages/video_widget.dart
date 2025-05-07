@@ -25,17 +25,35 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(widget.videoUrl)
-      ..initialize().then((_) {
-        setState(() {
-          _isInitialized = true;
+
+    try {
+      _controller = VideoPlayerController.network(widget.videoUrl)
+        ..initialize()
+            .then((_) {
+              if (mounted) {
+                setState(() {
+                  _isInitialized = true;
+                });
+              }
+
+              _controller.setVolume(widget.isMuted ? 0.0 : 1.0);
+          _controller.play();
+        }).catchError((error) {
+          print('Ошибка инициализации видео: $error');
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Не удалось загрузить видео')),
+            );
+          }
         });
-
-
-        _controller.setVolume(widget.isMuted ? 0.0 : 1.0);
-
-        _controller.play();
-      });
+    } catch (e) {
+      print('Критическая ошибка при создании VideoPlayerController: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Ошибка воспроизведения видео')),
+        );
+      }
+    }
   }
 
   @override
@@ -47,7 +65,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     if (!_isInitialized) {
-      return const Center(child: CircularProgressIndicator());
+      return Center(child: CircularProgressIndicator());
     }
 
     return Scaffold(

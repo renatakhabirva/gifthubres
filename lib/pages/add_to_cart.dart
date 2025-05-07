@@ -14,7 +14,7 @@ Future<void> addToCart(
     if (userId == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Пользователь не авторизован'),
+          content: Text('Вы не авторизованы'),
         ),
       );
       return;

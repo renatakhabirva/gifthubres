@@ -119,7 +119,7 @@ class _ResponsiveGridState extends State<ResponsiveGrid> {
               final product = filteredProducts[index];
               final imageUrl = product['ProductPhoto']?.isNotEmpty ?? false
                   ? product['ProductPhoto'][0]['Photo']
-                  : 'https://via.placeholder.com/150';
+                  : 'https://picsum.photos/200/300';
 
               return InkWell(
                   onTap: () {
