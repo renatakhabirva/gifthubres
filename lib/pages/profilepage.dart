@@ -104,7 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
 
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Письмо для подтверждения изменения почты отправлено на $_userEmail')),
+          SnackBar(content: Text('${MessagesRu.updateEmail} $_userEmail')),
         );
       }
 
@@ -169,10 +169,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Это поле обязательно';
+                    return '${MessagesRu.fieldRequired}';
                   }
                   if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                    return 'Неверный формат email';
+                    return '${MessagesRu.invalidEmail}';
                   }
                   return null;
                 },
@@ -183,7 +183,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 controller: _nameController,
                 decoration: InputDecoration(labelText: 'Имя'),
                 validator: (value) =>
-                value == null || value.trim().isEmpty ? 'Это поле обязательно' : null,
+                value == null || value
+                    .trim()
+                    .isEmpty ? '${MessagesRu.fieldRequired}' : null,
               ),
               SizedBox(height: 12),
 
@@ -191,7 +193,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 controller: _surnameController,
                 decoration: InputDecoration(labelText: 'Фамилия'),
                 validator: (value) =>
-                value == null || value.trim().isEmpty ? 'Это поле обязательно' : null,
+                value == null || value
+                    .trim()
+                    .isEmpty ? '${MessagesRu.fieldRequired}' : null,
               ),
               SizedBox(height: 12),
 
@@ -233,7 +237,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   }
 
                   if (!RegExp(r'^\+7\d{10}$').hasMatch(value)) {
-                    return 'Введите корректный номер телефона (например, +79991234567)';
+                    return '${MessagesRu.invalidPhone}';
                   }
                   return null;
                 },
@@ -373,7 +377,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
                               Navigator.of(context).pop(); // Закрываем диалог
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Ваш аккаунт удален')),
+                                const SnackBar(
+                                    content: Text(MessagesRu.deleteProfile)),
                               );
 
                               Navigator.pushReplacement(
@@ -383,7 +388,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             } catch (e) {
                               Navigator.of(context).pop(); // Закрываем диалог
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Неверный пароль или ошибка при удалении')),
+                                const SnackBar(content: Text(
+                                    MessagesRu.errorDeleteProfile)),
                               );
                             }
                           },

@@ -194,7 +194,7 @@ class _CartPageState extends State<CartPage> {
       String errorMessage = MessagesRu.error;
 
       if (error.toString().contains('количество')) {
-        errorMessage = MessagesRu.quantityProduct;
+        errorMessage = MessagesRu.quantityProductIsNull;
       }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(errorMessage)),

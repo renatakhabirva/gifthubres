@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gifthub/pages/messages.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 // находится ли товар в вишлисте
@@ -25,9 +26,7 @@ Future<void> toggleWishlistService({
 }) async {
   final user = Supabase.instance.client.auth.currentUser;
   if (user == null) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Вы не авторизованы')),
-    );
+    ScaffoldMessenger.of(context).showSnackBar((SnackBar(content: Text(MessagesRu.noLogin)));
     return;
   }
 
@@ -42,7 +41,7 @@ Future<void> toggleWishlistService({
 
       isInWishlist.value = false;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Товар удалён из вишлиста')),
+        SnackBar(content: Text(MessagesRu.deleteFromWishList)),
       );
     } else {
       // добавление товара в вишлист
@@ -53,7 +52,7 @@ Future<void> toggleWishlistService({
 
       isInWishlist.value = true;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Товар добавлен в вишлист')),
+        SnackBar(content: Text(MessagesRu.addToWishList)),
       );
     }
   } catch (error) {

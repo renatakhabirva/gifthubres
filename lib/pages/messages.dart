@@ -15,6 +15,16 @@ class MessagesRu {
   static const String emailExists = 'Этот email уже используется';
   static const String phoneExists = 'Этот номер телефона уже используется';
   static const String displayNameExists = 'Этот никнейм уже используется';
-  static const String quantityProduct = 'В наличии больше нет';
+  static const String quantityProductIsNull = 'В наличии больше нет';
   static const String error = 'Ошибка';
+  static const String noLogin = 'Вы не авторизованы';
+  static const String deleteFromWishList = 'Товар удалён из вишлиста';
+  static const String addToWishList = 'Товар добавлен в вишлист';
+  static const String updateProductQuantity =
+      'Количество товара в корзине увеличено';
+  static const String addToCart = 'Товар успешно добавлен в корзину';
+  static const String updateEmail =
+      'Письмо для подтверждения изменения почты отправлено на ';
+  static const String deleteProfile = 'Ваш аккаунт удален';
+  static const String errorDeleteProfile = 'Ваш аккаунт удален';
 }

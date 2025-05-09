@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gifthub/pages/messages.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> addToCart(
@@ -14,7 +15,7 @@ Future<void> addToCart(
     if (userId == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Вы не авторизованы'),
+          content: Text(MessagesRu.noLogin),
         ),
       );
       return;
@@ -44,7 +45,7 @@ Future<void> addToCart(
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Количество товара в корзине увеличено'),
+          content: Text(MessagesRu.updateProductQuantity),
         ),
       );
     } else {
@@ -58,7 +59,7 @@ Future<void> addToCart(
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Товар успешно добавлен в корзину'),
+          content: Text(MessagesRu.addToCart),
         ),
       );
     }
@@ -68,7 +69,7 @@ Future<void> addToCart(
         error.toString().contains('Запрашиваемое количество')) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('В наличии больше нет'),
+          content: Text(MessagesRu.quantityProductIsNull),
 
         ),
       );
