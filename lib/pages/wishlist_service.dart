@@ -26,7 +26,8 @@ Future<void> toggleWishlistService({
 }) async {
   final user = Supabase.instance.client.auth.currentUser;
   if (user == null) {
-    ScaffoldMessenger.of(context).showSnackBar((SnackBar(content: Text(MessagesRu.noLogin)));
+    ScaffoldMessenger.of(context).showSnackBar(
+        (SnackBar(content: Text(MessagesRu.noLogin))));
     return;
   }
 
